@@ -1,0 +1,6 @@
+config.json
+
+# Playwright test results
+test-results/
+
+test-results.json
