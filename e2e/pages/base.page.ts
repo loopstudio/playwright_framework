@@ -18,4 +18,16 @@ export class BasePage {
     async isVisible(selector: string) {
         return this.page.isVisible(selector);
     }
+
+    async selectOptionByValue(selector: string, value: string) {
+        await this.page.selectOption(selector, { value });
+    }
+
+    async getSelectedOption(selector: string) {
+        const selectedOption = await this.page.$eval(selector, (dropdown) => {
+            const selectElement = dropdown as HTMLSelectElement;
+            return selectElement.options[selectElement.selectedIndex].text;
+        });
+        return selectedOption;
+    }
 }
