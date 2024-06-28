@@ -23,11 +23,10 @@ export class BasePage {
         await this.page.selectOption(selector, { value });
     }
 
-    async getSelectedOption(selector: string) {
-        const selectedOption = await this.page.$eval(selector, (dropdown) => {
+    async getSelectedOption(selector: string): Promise<string> {
+        return this.page.$eval(selector, (dropdown) => {
             const selectElement = dropdown as HTMLSelectElement;
             return selectElement.options[selectElement.selectedIndex].text;
         });
-        return selectedOption;
     }
 }
