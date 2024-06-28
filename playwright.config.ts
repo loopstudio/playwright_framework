@@ -2,6 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
     use: {
+        baseURL: 'http://the-internet.herokuapp.com',
         browserName: 'chromium',
         headless: false,
         viewport: { width: 1280, height: 720 },
