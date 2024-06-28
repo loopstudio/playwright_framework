@@ -29,4 +29,25 @@ export class BasePage {
             return selectElement.options[selectElement.selectedIndex].text;
         });
     }
+
+    async dragAndDrop(source: string, target: string) {
+        await this.page.dragAndDrop(source, target);
+    }
+
+    async getTextOfElement(selector: string): Promise<string | null> {
+        return this.page.textContent(selector);
+    }
+
+    async clickAndWaitForNewWindow(selector: string): Promise<Page> {
+        const [newPage] = await Promise.all([
+            this.page.context().waitForEvent('page'),
+            this.page.click(selector),
+        ]);
+        await newPage.waitForLoadState();
+        return newPage;
+    }
+
+    async switchToWindow(page: Page) {
+        await page.bringToFront();
+    }
 }
