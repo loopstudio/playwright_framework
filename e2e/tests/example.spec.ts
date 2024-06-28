@@ -7,7 +7,7 @@ test.describe('Login functionality', () => {
 
     test.beforeEach(async ({ page }) => {
         loginPage = new LoginPage(page);
-        await loginPage.open('http://the-internet.herokuapp.com/login');
+        await loginPage.open();
     });
 
     test('Login with valid credentials', async ({ page }) => {
